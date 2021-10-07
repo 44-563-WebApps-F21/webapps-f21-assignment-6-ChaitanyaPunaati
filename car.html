@@ -8,6 +8,7 @@
 <body>
 
     <h2>orders a car by Chaitanya Punaati</h2>
+    
     <form>
         <input type="checkbox" id="cb_electric" name = "order" value="electric">
         <label for="cb_electric">electric</label></br>
@@ -21,6 +22,15 @@
         <input type="button" onclick="orderCar()" value="Order a car">
     </form>
     <p id="result">This text will give the results of ordering a car</p>
+    <form>
+        <label for="form_property">Enter a property</label>
+        <input type="text" id="form_property" name="property" value=color> <br>
+
+        <label for="form_value">Enter a value</label>
+        <input type="text" id="form_value" name="value"> <br>
+
+        <input type="button" onclick="updateCar()" value="Update the car">
+    </form>
     <script>
         var my_car = {}
         out = document.getElementById("result")
@@ -52,6 +62,13 @@
         }
        
         out = document.getElementById("result")
+        function updateCar()
+        {
+            var property = document.getElementById("form_property").value;
+            var value = document.getElementById("form_value").value;
+            my_car[property] = value;
+            result.innerHTML = "my_car[]=  " + JSON.stringify(my_car);
+        }
         </script>
     </body>
 </html>
