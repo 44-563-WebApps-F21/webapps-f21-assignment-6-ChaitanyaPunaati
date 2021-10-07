@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>Arithmetic</title>
+    <title>Arithmetic Page</title>
 </head>
 
 <body>
 
-    <h2>computes Venkata Bhavana Annem</h2>
+    <h2>computes Chaitanya Punaati</h2>
 
     <form>
         <label for="form1_base">Enter a base</label>
@@ -21,10 +21,24 @@
         <p id="result">This text will give the compute results</p>
 
     </form>
+    <form > 
+        <input type="radio" id="+" name="calculation" value="plus" onclick="processRadio()" checked>
+        <label for="+">Addition</label></br>
+
+        <input type="radio" id="-" name="calculation" value="minus" onclick="processRadio()">
+        <label for="-">Subtraction</label></br>
+
+        <input type="radio" id="*" name="calculation" value="times" onclick="processRadio()">
+        <label for="*">Multiplication</label></br>
+
+        <input type="radio" id="/" name="calculation" value="divide" onclick="processRadio()">
+        <label for="">Division</label></br>
+
+        <p id="res">This text will give the results</p>
+    </form>
     <script>
 
         function powers() {
-
             var num1 = document.getElementById("form1_base").value;
             var num2 = document.getElementById("form1_exponent").value;
             var result = "";
@@ -39,6 +53,29 @@
             }
             console.log("result");
             out.innerHTML = "Powers of base are: " + result;
+        }
+        function processRadio() {
+            var n1 = document.getElementById("form1_base").value;
+            var n2 = document.getElementById("form1_exponent").value;
+            var res1 = 0;
+            out = document.getElementById("res")
+            if (document.getElementById("+").checked) {
+                res1 = parseFloat(n1) + parseFloat(n2);
+                out.innerHTML = res1;
+            }
+            if (document.getElementById("-").checked) {
+                res1 = n1 - n2;
+                out.innerHTML = res1;
+            }
+            if (document.getElementById("*").checked) {
+                res1 = n1 * n2;
+                out.innerHTML = res1;
+            }
+            if (document.getElementById("/").checked) {
+                res1 = n1 / n2;
+                out.innerHTML = res1;
+            }
+            
         }
     </script>
 </body>
