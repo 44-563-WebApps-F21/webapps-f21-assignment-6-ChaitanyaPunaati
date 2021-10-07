@@ -14,27 +14,11 @@
     <label for="form1_guess_word">Enter a phrase</label>
     <input type="text" id="form1_guess_word" name="form1_guess_word" autofocus> <br>
 
-    <input type="button" onclick=" processPhrase()" value="Check the phrase">
+    <input type="button" class="btn btn-success" onclick=" processPhrase()" value="Check the phrase" id = "locked">
 </form>
 
 <p id="result">Your guess count will shown here. </p>
 
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
 <div class = "container">
     <img src="Panther.jpg" height = "200" width = "200" onclick = "newImage()" id="image">
 </div>
@@ -42,9 +26,9 @@ function resolveForm (){
 <script>
     var correct = 0;
     var wrong = 0;
+    var count = 0;
 
     function processPhrase() {
-
         console.log("Checking the Guess......")
         secret_Word = document.getElementById("form1_secret_word").value
         guess_word = document.getElementById("form1_guess_word").value
@@ -56,12 +40,25 @@ function resolveForm (){
                 result.innerHTML = "Correct guess Count: " + correct + "<br>" + "Wrong guess Count: " + wrong
             }
             else {
-                wrong = wrong + 1
-                alert("Access denied")
+                if (count >= 0 && count < 3) {
+                    wrong++;
+                    count++;
+                    alert("Access denied")
+                    result.innerHTML = "Correct guess Count: "
+                        + correct + "<br>" + "Wrong guess Count: " + wrong
 
-                result.innerHTML = "Correct guess Count: " + correct + "<br>" + "Wrong guess Count: " + wrong
+                }
+                else {
+                    accountLock();
+                }
             }
+        }
+        function accountLock() {
 
+        document.getElementById("locked").value = "Account is locked"
+        document.getElementById("locked").className = "btn btn-danger"
+        document.getElementById("locked").disabled = true
+        alert("account locked")
         }
         var usingImage = 1;
         image = document.getElementById("image");
